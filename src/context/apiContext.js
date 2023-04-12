@@ -12,12 +12,13 @@ export const AppContext = (props) => {
 
     useEffect(() => {
        fetchSelectedCategories(selectedCategories) 
-    }, [selectedCategories]);
+    }, []);
 
     const fetchSelectedCategories = (query) => {
         setLoading(true)
-        fetchDataFromAPI(`search/?q=${query}`).then((res) => {
-            console.log(res)
+        fetchDataFromAPI(`search/?q=${query}`).then(({contents}) => {
+            console.log(contents)
+            setSelectedCategories(contents)
             setLoading(false);
         })
     }
