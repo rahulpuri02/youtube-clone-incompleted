@@ -1,10 +1,15 @@
+import { AppContext } from "./context/apiContext";
 
 
 function App() {
   return (
-    <div className='mx-1'>
-      youtube clone
+    <>
+   <AppContext>
+    <div>
+      hello world
     </div>
+   </AppContext>
+   </>
   );
 }
 
