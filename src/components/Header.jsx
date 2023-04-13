@@ -10,23 +10,20 @@ import { VscDeviceCameraVideo } from "react-icons/vsc";
 import { CgClose } from "react-icons/cg";
 
 import { Context } from "../context/apiContext";
-import Loader from "../shared/loader";
+
 
 const Header = () => {
     const [searchQuery, setSearchQuery] = useState("");
 
-    const { loading, mobileMenu, setMobileMenu } = useContext(Context);
+    const {mobileMenu, setMobileMenu } = useContext(Context);
 
     const navigate = useNavigate();
 
     const searchQueryHandler = (event) => {
-        if (
-            (event?.key === "Enter" || event === "searchButton") &&
-            searchQuery?.length > 0
-        ) {
-            navigate(`/searchResult/${searchQuery}`);
-        }
-    };
+      if((event.key === 'Enter' || event === 'searchButton') && searchQuery.length > 0){
+        navigate(`/searchResult/${searchQuery}`)
+      }
+    }
 
     const mobileMenuToggle = () => {
         setMobileMenu(!mobileMenu);
@@ -37,8 +34,10 @@ const Header = () => {
 
     return (
         <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-white dark:bg-black">
-            {loading && <Loader />}
-
+   
+   {/* {
+    loading && <Loader />
+   } */}
             <div className="flex h-5 items-center gap-1">
                 {pageName !== "video" && (
                     <div
@@ -84,9 +83,10 @@ const Header = () => {
                         type="text"
                         className="bg-transparent outline-none text-black pr-5 pl-5 md:pl-0 w-44 md:group-focus-within:pl-0 md:w-64 lg:w-[500px]"
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        onKeyUp={searchQueryHandler}
                         placeholder="Search"
+                        onKeyUp={searchQueryHandler}
                         value={searchQuery}
+
                     />
                 </div>
                 <button
@@ -112,7 +112,7 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="flex h-8 w-8 overflow-hidden rounded-full md:ml-4">
-                    <img src="https://images.news9live.com/h-upload/2022/07/02/448078-sidhu.jpg?w=663" />
+                    <img src="https://images.news9live.com/h-upload/2022/07/02/448078-sidhu.jpg?w=663" alt="profile-photo"/>
                 </div>
             </div>
         </div>
